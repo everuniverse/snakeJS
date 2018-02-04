@@ -5,7 +5,7 @@ function Snake(x, y) {
 	this.direction = DIRECTION.NONE;
 	this.facing = { leftWall: false, rightWall: false, topWall: false, bottomWall: false };
 	this.collide = false;
-	this.body = [];
+	this.body = [this];
 	
 	this.getPositionX = function () {
 
@@ -55,10 +55,6 @@ function Snake(x, y) {
 	};
 	
 	this.eat = function () {
-		this.appendBody();
-	};
-	
-	this.appendBody = function () {
 		this.body.push(new Snake(this.getPositionX(), this.getPositionY()));
 	};
 	

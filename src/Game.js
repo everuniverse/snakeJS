@@ -21,7 +21,6 @@ function Game(args) {
 				foodIndexY = util.getRandomIndex(this.column);
 		
 		this.snake = new Snake(snakeIndexX, snakeIndexY);
-		this.snake.appendBody();
 		this.food = new Food(foodIndexX, foodIndexY);
 		
 		this.createTerrain();
