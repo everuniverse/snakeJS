@@ -11,11 +11,7 @@ function Game(args) {
 	this.cycle = 0;
 	this.lastCycle = 0;
 
-}
-
-Game.prototype = {
-
-	init: function () {
+	this.init = function () {
 
 		var util = new Util();
 		
@@ -30,9 +26,9 @@ Game.prototype = {
 		
 		this.createTerrain();
 
-	},
+	};
 
-	update: function () {
+	this.update = function () {
 		
 		switch (this.snake.getDirection()) {
 			
@@ -56,7 +52,7 @@ Game.prototype = {
 		
 		if (this.snake.getPositionX() == this.food.getPositionX() &&
 			this.snake.getPositionY() == this.food.getPositionY()) {
-			this.snake.eat(this.food);
+			this.snake.eat();
 			this.food.spawnRandom(this);
 		}
 		
@@ -66,9 +62,9 @@ Game.prototype = {
 			this.snake.body[i] = new Snake(snakeBody[i].getPositionX(), snakeBody[i].getPositionY());
 		}
 
-	},
+	};
 
-	render: function () {
+	this.render = function () {
 
 		this.canvas.innerHTML = "";
 		for (var i = 0; i < this.row; ++i) {
@@ -78,21 +74,21 @@ Game.prototype = {
 			this.canvas.innerHTML += "<br>";
 		}
 		
-	},
+	};
 
-	addCycle: function () {
+	this.addCycle = function () {
 		++this.cycle;
-	},
+	};
 	
-	rememberCycle: function (cycle) {
+	this.rememberCycle = function (cycle) {
 		this.lastCycle = cycle;
-	},
+	};
 
-	stopRunning: function () {
+	this.stopRunning = function () {
 		this.running = false;
-	},
+	};
 	
-	createTerrain: function () {
+	this.createTerrain = function () {
 
 		for (var i = 0; i < this.row; ++i) {
 			this.terrain[i] = [];
@@ -110,9 +106,9 @@ Game.prototype = {
 			this.terrain[snakeBody[i].getPositionX()][snakeBody[i].getPositionY()] = this.field.SNAKE;
 		}
 		
-	},
+	};
 	
-	run: function () {
+	this.run = function () {
 		if (this.running) {
 			this.addCycle();
 			
@@ -133,6 +129,6 @@ Game.prototype = {
 		} else {
 			this.running = false;
 		}
-	}
+	};
 	
-};
+}

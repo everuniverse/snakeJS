@@ -7,35 +7,31 @@ function Snake(x, y) {
 	this.collide = false;
 	this.body = [];
 	
-}
-
-Snake.prototype = {
-
-	getPositionX: function () {
+	this.getPositionX = function () {
 
 		return this.x;
 
-	},
+	};
 	
-	getPositionY: function () {
+	this.getPositionY = function () {
 
 		return this.y;
 
-	},
+	};
 	
-	setDirection: function (direction) {
+	this.setDirection = function (direction) {
 		
 		this.direction = direction;
 		
-	},
+	};
 	
-	getDirection: function () {
+	this.getDirection = function () {
 		
 		return this.direction;
 		
-	},
+	};
 	
-	move: function (direction) {
+	this.move = function (direction) {
 		
 		switch (direction) {
 			case "up":
@@ -56,14 +52,14 @@ Snake.prototype = {
 				break;
 		}
 	
-	},
+	};
 	
-	eat: function (food) {
+	this.eat = function () {
 		this.appendBody();
-	},
+	};
 	
-	appendBody: function () {
+	this.appendBody = function () {
 		this.body.push(new Snake(this.getPositionX(), this.getPositionY()));
-	}
+	};
 	
-};
+}

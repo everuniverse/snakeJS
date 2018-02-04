@@ -1,9 +1,5 @@
 var Physics = function () {
-
-}
-
-Physics.prototype = {
-	touch: function (objectA, objectB) {
-		if ()
+	this.touch = function (objectA, objectB) {
+		// TODO: if ()
 	}
 }
