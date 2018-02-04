@@ -1,0 +1,16 @@
+
+body {
+	font-family: consolas;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+footer {
+	padding: 10px;
+}
+
+#main {
+	width: 100%;
+}
