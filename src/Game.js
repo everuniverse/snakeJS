@@ -1,7 +1,7 @@
 function Game(args) {
 
-	this.row = 8;
-	this.column = 8;
+	this.row = GAME_BOARD.WIDTH;
+	this.column = GAME_BOARD.HEIGHT;
 	this.field = ICON;
 	this.terrain = [];
 	this.snake = null;
@@ -12,13 +12,11 @@ function Game(args) {
 	this.lastCycle = 0;
 
 	this.init = function () {
-
-		var util = new Util();
 		
-		var snakeIndexX = util.getRandomIndex(this.row),
-				snakeIndexY = util.getRandomIndex(this.column),
-				foodIndexX = util.getRandomIndex(this.row),
-				foodIndexY = util.getRandomIndex(this.column);
+		var snakeIndexX = Util.getRandomIndex(this.row),
+				snakeIndexY = Util.getRandomIndex(this.column),
+				foodIndexX = Util.getRandomIndex(this.row),
+				foodIndexY = Util.getRandomIndex(this.column);
 		
 		this.snake = new Snake(snakeIndexX, snakeIndexY);
 		this.food = new Food(foodIndexX, foodIndexY);
@@ -49,8 +47,7 @@ function Game(args) {
 
 		}
 		
-		if (this.snake.getPositionX() == this.food.getPositionX() &&
-			this.snake.getPositionY() == this.food.getPositionY()) {
+		if (Physics.collide(this.snake, this.food)) {
 			this.snake.eat();
 			this.food.spawnRandom(this);
 		}

@@ -23,7 +23,6 @@ function Food(x, y) {
 	};
 	
 	this.spawnRandom = function (gameBoard) {
-		var util = new Util();
 		var foodSpawnX;
 		var foodSpawnY;
 		var collision;
@@ -31,8 +30,8 @@ function Food(x, y) {
 		// Get a random field and check if it's free.
 		// If not, then repeat. (Dirty solution)
 		do {
-			foodSpawnX = util.getRandomIndex(gameBoard.row);
-			foodSpawnY = util.getRandomIndex(gameBoard.column);
+			foodSpawnX = Util.getRandomIndex(gameBoard.row);
+			foodSpawnY = Util.getRandomIndex(gameBoard.column);
 			collision = false;
 			for (var i = 0; i < gameBoard.snake.body.length && !collision; ++i) {
 				if (foodSpawnX == gameBoard.snake.body[i].getPositionX() &&
@@ -46,3 +45,5 @@ function Food(x, y) {
 	};
 	
 }
+
+Food.prototype = new Object();

@@ -1,3 +1,8 @@
+var GAME_BOARD = {
+	WIDTH: 8,
+	HEIGHT: 8
+}
+
 var DIRECTION = {
 	NONE: 0,
 	UP: 1,

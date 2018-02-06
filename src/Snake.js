@@ -39,7 +39,7 @@ function Snake(x, y) {
 					--this.x;
 				break;
 			case "down":
-				if (this.x < 7)
+				if (this.x < GAME_BOARD.HEIGHT - 1)
 					++this.x;
 				break;
 			case "left":
@@ -47,7 +47,7 @@ function Snake(x, y) {
 					--this.y;
 				break;
 			case "right":
-				if (this.y < 7)
+				if (this.y < GAME_BOARD.WIDTH -1 )
 					++this.y;
 				break;
 		}
@@ -59,3 +59,5 @@ function Snake(x, y) {
 	};
 	
 }
+
+Snake.prototype = new Object();
