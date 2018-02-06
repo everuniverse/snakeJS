@@ -4,22 +4,16 @@ function Food(x, y) {
 	this.y = y;
 
 	this.getPositionX = function() {
-
 		return this.x;
-
 	};
 	
 	this.getPositionY = function() {
-
 		return this.y;
-
 	};
 	
 	this.setPosition = function (x, y) {
-		
 		this.x = x;
 		this.y = y;
-		
 	};
 	
 	this.spawnRandom = function (gameBoard) {
