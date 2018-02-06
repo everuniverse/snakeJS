@@ -12,7 +12,6 @@ function Game(args) {
 	this.lastCycle = 0;
 
 	this.init = function () {
-		
 		var snakeIndexX = Util.getRandomIndex(this.row),
 				snakeIndexY = Util.getRandomIndex(this.column),
 				foodIndexX = Util.getRandomIndex(this.row),
@@ -22,11 +21,9 @@ function Game(args) {
 		this.food = new Food(foodIndexX, foodIndexY);
 		
 		this.createTerrain();
-
 	};
 
 	this.update = function () {
-		
 		switch (this.snake.getDirection()) {
 			
 			case DIRECTION.UP:
@@ -44,7 +41,6 @@ function Game(args) {
 			case DIRECTION.RIGHT:
 				this.snake.move("right");
 				break;
-
 		}
 		
 		if (Physics.collide(this.snake, this.food)) {
@@ -61,7 +57,6 @@ function Game(args) {
 	};
 
 	this.render = function () {
-
 		this.canvas.innerHTML = "";
 		for (var i = 0; i < this.row; ++i) {
 			for (var j = 0; j < this.column; ++j) {
@@ -69,19 +64,6 @@ function Game(args) {
 			}
 			this.canvas.innerHTML += "<br>";
 		}
-		
-	};
-
-	this.addCycle = function () {
-		++this.cycle;
-	};
-	
-	this.rememberCycle = function (cycle) {
-		this.lastCycle = cycle;
-	};
-
-	this.stopRunning = function () {
-		this.running = false;
 	};
 	
 	this.createTerrain = function () {
@@ -101,7 +83,14 @@ function Game(args) {
 		for (var i = 0; i < this.snake.body.length; ++i) {
 			this.terrain[snakeBody[i].getPositionX()][snakeBody[i].getPositionY()] = this.field.SNAKE;
 		}
-		
+	};
+
+	this.addCycle = function () {
+		++this.cycle;
+	};
+	
+	this.rememberCycle = function (cycle) {
+		this.lastCycle = cycle;
 	};
 	
 	this.run = function () {
@@ -114,17 +103,18 @@ function Game(args) {
 	    }
 	    
 	    this.rememberCycle(this.cycle);
-			
 			this.update();
-			
 			this.render();
-			
 			this.createTerrain();
 			
 			requestAnimationFrame(this.run.bind(this));
 		} else {
 			this.running = false;
 		}
+	};
+
+	this.stopRunning = function () {
+		this.running = false;
 	};
 	
 }
