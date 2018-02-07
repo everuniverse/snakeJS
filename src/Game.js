@@ -19,8 +19,8 @@ function Game(args) {
 		
 		this.snake = new Snake(snakeIndexX, snakeIndexY);
 		this.food = new Food(foodIndexX, foodIndexY);
-		
-		this.createTerrain();
+		this.terrain = new Terrain(this);
+		this.terrain.create();
 	};
 
 	this.update = function () {
@@ -60,28 +60,9 @@ function Game(args) {
 		this.canvas.innerHTML = "";
 		for (var i = 0; i < this.row; ++i) {
 			for (var j = 0; j < this.column; ++j) {
-				this.canvas.innerHTML += this.terrain[i][j];
+				this.canvas.innerHTML += this.terrain.ground[i][j];
 			}
 			this.canvas.innerHTML += "<br>";
-		}
-	};
-	
-	this.createTerrain = function () {
-
-		for (var i = 0; i < this.row; ++i) {
-			this.terrain[i] = [];
-			for (var j = 0; j < this.column; ++j) {
-				this.terrain[i].push(this.field.EMPTY);
-			}
-		}
-		
-		var snakeBody = this.snake.body;
-		
-		this.terrain[this.food.getPositionX()][this.food.getPositionY()] = this.field.FOOD;
-		this.terrain[this.snake.getPositionX()][this.snake.getPositionY()] = this.field.SNAKE;
-		
-		for (var i = 0; i < this.snake.body.length; ++i) {
-			this.terrain[snakeBody[i].getPositionX()][snakeBody[i].getPositionY()] = this.field.SNAKE;
 		}
 	};
 
@@ -105,7 +86,7 @@ function Game(args) {
 	    this.rememberCycle(this.cycle);
 			this.update();
 			this.render();
-			this.createTerrain();
+			this.terrain.create();
 			
 			requestAnimationFrame(this.run.bind(this));
 		} else {
