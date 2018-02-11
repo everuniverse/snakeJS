@@ -53,6 +53,28 @@ function Snake(x, y) {
 		}
 	};
 	
+	this.moveInDirection = function () {
+		var direction = this.getDirection();
+		
+		switch (direction) {
+			case DIRECTION.UP:
+				this.move("up");
+				break;
+			
+			case DIRECTION.DOWN:
+				this.move("down");
+				break;
+			
+			case DIRECTION.LEFT:
+				this.move("left");
+				break;
+			
+			case DIRECTION.RIGHT:
+				this.move("right");
+				break;
+		}
+	}
+	
 	this.eat = function () {
 		this.body.push(new Snake(this.getPositionX(), this.getPositionY()));
 	};
