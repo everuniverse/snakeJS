@@ -10,6 +10,7 @@ function Game(args) {
 	this.running = true;
 	this.cycle = 0;
 	this.lastCycle = 0;
+	this.updated = false;
 
 	this.init = function () {
 		var snakeIndexX = Util.getRandomIndex(this.row),
@@ -24,24 +25,7 @@ function Game(args) {
 	};
 
 	this.update = function () {
-		switch (this.snake.getDirection()) {
-			
-			case DIRECTION.UP:
-				this.snake.move("up");
-				break;
-			
-			case DIRECTION.DOWN:
-				this.snake.move("down");
-				break;
-			
-			case DIRECTION.LEFT:
-				this.snake.move("left");
-				break;
-			
-			case DIRECTION.RIGHT:
-				this.snake.move("right");
-				break;
-		}
+		this.snake.moveInDirection();
 		
 		if (Physics.collide(this.snake, this.food)) {
 			this.snake.eat();
@@ -53,16 +37,21 @@ function Game(args) {
 			snakeBody.push(this.snake.body[i]);
 			this.snake.body[i] = new Snake(snakeBody[i].getPositionX(), snakeBody[i].getPositionY());
 		}
-
+		
+		this.updated = true;
 	};
 
 	this.render = function () {
-		this.canvas.innerHTML = "";
-		for (var i = 0; i < this.row; ++i) {
-			for (var j = 0; j < this.column; ++j) {
-				this.canvas.innerHTML += this.terrain.ground[i][j];
+		if (this.updated) {
+			this.canvas.innerHTML = "";
+			for (var i = 0; i < this.row; ++i) {
+				for (var j = 0; j < this.column; ++j) {
+					this.canvas.innerHTML += this.terrain.ground[i][j];
+				}
+				this.canvas.innerHTML += "<br>";
 			}
-			this.canvas.innerHTML += "<br>";
+			
+			this.updated = false;
 		}
 	};
 
