@@ -1,9 +1,7 @@
 var Physics = {
 	collide: function (objectA, objectB) {
-		var positionOfObjectA = objectA.getPosition();
-		var positionOfObjectB = objectB.getPosition();
-		if (positionOfObjectA.x === positionOfObjectB.x &&
-			positionOfObjectA.y === positionOfObjectB.y) {
+		if (objectA.getPosition().x === objectB.getPosition().x &&
+		    objectB.getPosition().y === objectA.getPosition().y) {
 			return true;
 		} else {
 			return false;
